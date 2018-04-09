@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import '../layouts/index.css'
 
 const IndexPage = ({data}) => {
   console.log(data)
@@ -18,3 +17,22 @@ const IndexPage = ({data}) => {
     </div>
   )
 }
+
+export const  query = graphql`
+query HomePageQuery{
+  allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+    totalCount
+    edges {
+      node {
+        frontmatter {
+          title
+          date
+          author
+        }
+        excerpt
+        timeToRead
+      }
+    }
+  }
+}
+`
